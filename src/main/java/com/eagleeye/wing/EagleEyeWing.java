@@ -15,6 +15,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EagleEyeWing {
 
@@ -32,7 +34,12 @@ public class EagleEyeWing {
     RootModel rootModel = new RootModel();
     rootModel.setNotification(notificationModel);
     rootModel.setData(dataModel);
-    rootModel.setTo("dgART6R3qu0:APA91bFgq8ebjQ4kFod-niDpMGSQAP2wV3MoK4afWMGb0zc-lYgDGF9AZCtdtLizRQopRbc6fvxYxHolfaan5H0LR9ZMRSeaw4FuhstVOdMS76cdyaep5GxdNX0p9wvVMnt5cIGg-MQx");
+    //rootModel.setTo("dgART6R3qu0:APA91bFgq8ebjQ4kFod-niDpMGSQAP2wV3MoK4afWMGb0zc"
+        //+ "-lYgDGF9AZCtdtLizRQopRbc6fvxYxHolfaan5H0LR9ZMRSeaw4FuhstVOdMS76cdyaep5GxdNX0p9wvVMnt5cIGg-MQx");
+
+    List<String> registerList = new ArrayList<>();
+    registerList.add("dgART6R3qu0:APA91bFgq8ebjQ4kFod-niDpMGSQAP2wV3MoK4afWMGb0zc-lYgDGF9AZCtdtLizRQopRbc6fvxYxHolfaan5H0LR9ZMRSeaw4FuhstVOdMS76cdyaep5GxdNX0p9wvVMnt5cIGg-MQx");
+    rootModel.setRegistration_ids(registerList);
 
     String json = new ObjectMapper().writeValueAsString(rootModel);
 
