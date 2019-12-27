@@ -1,28 +1,14 @@
 package com.eagleeye.wing;
 
-import com.eagleeye.wing.common.Configuration;
-import com.eagleeye.wing.models.DataModel;
-import com.eagleeye.wing.models.NotificationModel;
-import com.eagleeye.wing.models.RootModel;
-import com.eagleeye.wing.services.FireBaseService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+@SpringBootApplication
 public class EagleEyeWing {
 
-  public static void main(String[] args)
-      throws IOException {
+  public static void main(String[] args) {
 
-    NotificationModel notificationModel = new NotificationModel();
+    /*NotificationModel notificationModel = new NotificationModel();
     notificationModel.setTitle("Test sever");
     notificationModel.setBody("testing server side");
 
@@ -33,33 +19,9 @@ public class EagleEyeWing {
     RootModel rootModel = new RootModel();
     rootModel.setNotification(notificationModel);
     rootModel.setData(dataModel);
-    rootModel.setTo("dgART6R3qu0:APA91bFgq8ebjQ4kFod-niDpMGSQAP2wV3MoK4afWMGb0zc-lYgDGF9AZCtdtLizRQopRbc6fvxYxHolfaan5H0LR9ZMRSeaw4FuhstVOdMS76cdyaep5GxdNX0p9wvVMnt5cIGg-MQx");
-
-    List<String> registerList = new ArrayList<>();
-    //registerList.add("dgART6R3qu0:APA91bFgq8ebjQ4kFod-niDpMGSQAP2wV3MoK4afWMGb0zc-lYgDGF9AZCtdtLizRQopRbc6fvxYxHolfaan5H0LR9ZMRSeaw4FuhstVOdMS76cdyaep5GxdNX0p9wvVMnt5cIGg-MQx");
-    //rootModel.setRegistration_ids(registerList);
-
-    String json = new ObjectMapper().writeValueAsString(rootModel);
-
-    System.out.println(json);
+    rootModel.setTo("eE_EDdQGbq4:APA91bFYQX_7uCOPZb9ABU8lpqJTbzYndjB-Gu3TdodYmeLcLzYqH63pKk4dlxZE7KnuuTXOpTVqe1kLf1dHIjZu_H1UM2m1uq7wFrD1zJ28dLzC6hcY6mq9jSxGUSdYFucLt2rOtvN8");
 
 
-    CloseableHttpClient client = HttpClients.createDefault();
-
-    HttpPost httpPost = new HttpPost("https://fcm.googleapis.com/fcm/send");
-
-    httpPost.addHeader("Content-Type", "application/json");
-    httpPost.addHeader("Authorization", "key=AAAADrmYT2Q:APA91bF-Jfoqo5oaXqsYRWfovLnBuNLkStYw3YrV7WYYDWVFMS8uQsX73NlTF5iJNXAEoCEQWM9QMUO5MFFJf3Ov71OWt8hbeqe6QYLx5_0IzQv8x_we5dAwtR47GlTJ8Ke_gDrH-jjn");
-
-    StringEntity stringEntity = new StringEntity(json);
-    httpPost.setEntity(stringEntity);
-
-    /*CloseableHttpResponse response = client.execute(httpPost);
-
-    ResponseHandler<String> handler = new BasicResponseHandler();
-    String body = handler.handleResponse(response);
-
-    System.out.println(body);*/
 
     Configuration config = new Configuration();
     System.out.println(config.getFirebaseUrl());
@@ -67,6 +29,8 @@ public class EagleEyeWing {
 
     FireBaseService fireBaseService = new FireBaseService();
     String response = fireBaseService.sendNotification(rootModel);
-    System.out.println(response);
+    System.out.println(response);*/
+
+    SpringApplication.run(EagleEyeWing.class);
   }
 }
