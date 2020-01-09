@@ -1,23 +1,22 @@
 package com.eagleeye.wing.configurations;
 
+import com.eagleeye.wing.services.AuthService;
+
 import io.jsonwebtoken.ExpiredJwtException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 @Component
@@ -26,7 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
   private JwtTokenUtil jwtTokenUtil;
 
   @Autowired
-  private UserModel userModel;
+  private AuthService authService;
   
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -51,8 +50,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     // Once we get the token validate it.
     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-      UserDetails userDetails = new User(userModel.getUsername(), userModel.getPassword(),
-          AuthorityUtils.createAuthorityList(userModel.getRoles()));
+      UserDetails userDetails = this.authService.loadUserByUsername(username);
       // if token is valid configure Spring Security to manually set
       // authentication
       if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
@@ -67,35 +65,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
       }
     }
     chain.doFilter(request, response);
-  }
-}
-
-@Service
-class UserModel implements UserDetailsService {
-
-  private String username = "ear";
-
-  private String password = "3agle3ye3ar";
-
-  private String[] roles = { "ROLE_ADMIN" };
-
-  public UserModel() {
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public String[] getRoles() {
-    return roles;
-  }
-
-  @Override public UserDetails loadUserByUsername(String s)
-      throws UsernameNotFoundException {
-    return null;
   }
 }
