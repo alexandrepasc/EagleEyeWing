@@ -6,7 +6,7 @@
 
     <groupId>com.eagleeye.wing</groupId>
     <artifactId>EagleEyeWing</artifactId>
-    <version>v0.1</version>
+    <version>v0.3</version>
     <packaging>jar</packaging>
 
     <parent>
