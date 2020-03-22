@@ -53,6 +53,13 @@ public class ActivateService {
       }
     }
 
+    try {
+      System.out.println("sleep");
+      Thread.sleep(10000L);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
     return "ok";
   }
 
