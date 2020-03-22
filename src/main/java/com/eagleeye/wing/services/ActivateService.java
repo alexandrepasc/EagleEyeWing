@@ -53,6 +53,13 @@ public class ActivateService {
       }
     }
 
+    try {
+      System.out.println("sleep");
+      Thread.sleep(10000L);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
     return "ok";
   }
 
@@ -67,6 +74,11 @@ public class ActivateService {
     rootModel.setNotification(notificationModel);
 
     DataModel dataModel = new DataModel();
+    dataModel.setTitle(feeder.getPackName() + " updated");
+    dataModel.setBody("New version " + feeder.getPackVersion());
+    dataModel.setId(feeder.getId().toString());
+    dataModel.setClick_action("FLUTTER_NOTIFICATION_CLICK");
+
     rootModel.setData(dataModel);
 
     List<String> sendTo = new ArrayList<>();
