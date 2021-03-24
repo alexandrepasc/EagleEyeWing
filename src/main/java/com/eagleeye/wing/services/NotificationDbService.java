@@ -37,6 +37,7 @@ public class NotificationDbService {
         newNotification.setUserId(userId);
         newNotification.setTitle(feederName + " updated");
         newNotification.setText("New version " + feederVersion);
+        newNotification.setUnread(true);
         newNotification.setFeederId(feederId);
         newNotification.setNotificationDate(Instant.now().toEpochMilli());
 

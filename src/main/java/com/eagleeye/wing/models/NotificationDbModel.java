@@ -29,6 +29,9 @@ public class NotificationDbModel {
     @Column(name = "text")
     private String text;
 
+    @Column(name = "unread")
+    private boolean unread;
+
     @Column(name = "feeder_id")
     private UUID feederId;
 
@@ -68,6 +71,14 @@ public class NotificationDbModel {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean isUnread() {
+        return unread;
+    }
+
+    public void setUnread(boolean unread) {
+        this.unread = unread;
     }
 
     public UUID getFeederId() {
