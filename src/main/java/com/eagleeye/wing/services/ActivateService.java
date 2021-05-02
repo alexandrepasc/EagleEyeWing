@@ -1,6 +1,7 @@
 package com.eagleeye.wing.services;
 
 import com.eagleeye.wing.dao.FeederDao;
+import com.eagleeye.wing.dao.NotificationDbDao;
 import com.eagleeye.wing.exceptions.FeederNotFoundException;
 import com.eagleeye.wing.models.ActivateModel;
 import com.eagleeye.wing.models.DataModel;
@@ -29,6 +30,9 @@ public class ActivateService {
   @Autowired
   private FeederDao feederDao;
 
+  @Autowired
+  private NotificationDbDao notificationDbDao;
+
   public String activate(ActivateModel activateModel) {
 
     for (UUID id : activateModel.getIds()) {
@@ -39,6 +43,9 @@ public class ActivateService {
       }
 
       FeederModel feeder = feederValidation.get();
+
+      NotificationDbService notificationDbService = new NotificationDbService();
+      notificationDbService.createNotifications(feeder, notificationDbDao);
 
       RootModel rootModel = buildNotification(feeder);
 

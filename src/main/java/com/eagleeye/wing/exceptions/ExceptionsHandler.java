@@ -12,7 +12,7 @@ import java.io.IOException;
 @ControllerAdvice
 public class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(FeederNotFoundException.class)
+  @ExceptionHandler({FeederNotFoundException.class, UsersNotFoundForFeederException.class})
   public void userNotFound(HttpServletResponse response) throws IOException {
     response.sendError(HttpStatus.NOT_FOUND.value());
   }
