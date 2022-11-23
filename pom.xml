@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <jwt.version>0.9.1</jwt.version>
-        <postgresql.version>42.3.6</postgresql.version>
+        <postgresql.version>42.3.8</postgresql.version>
         <apache-http-client.version>4.5.13</apache-http-client.version>
         <jackson.version>2.13.3</jackson.version>
         <maven-compiler.version>3.8.1</maven-compiler.version>
